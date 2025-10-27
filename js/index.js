@@ -143,10 +143,12 @@ if (window.location.pathname.includes("index.html")){
                 window.location.href = "home.html";
                 return;
             }else{
+                loginInvalid.classList.add("d-none");
                 loginpassInvalid.classList.remove("d-none");
                 return; 
             }
         }
+        loginpassInvalid.classList.add("d-none");
         loginInvalid.classList.remove("d-none");
     }
 })
