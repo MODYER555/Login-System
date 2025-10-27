@@ -126,7 +126,8 @@ function isUserExist() {
 let loginEmail = document.getElementById("loginEmail");
 let loginPass = document.getElementById("loginPass");
 let loginButton = document.getElementById("loginButton");
-
+let loginInvalid = document.getElementById("loginInvalid");
+let loginpassInvalid = document.getElementById("loginpassInvalid");
 
 
 
@@ -135,17 +136,19 @@ if (window.location.pathname.includes("index.html")){
     dataEntry = JSON.parse(localStorage.getItem("userData"))|| [];
     for(var i=0; i<dataEntry.length ;i++){
         if(loginEmail.value == dataEntry[i].email){
+            loginInvalid.classList.add("d-none");
+            loginpassInvalid.classList.add("d-none");
             if(loginPass.value == dataEntry[i].password){
                 localStorage.setItem("currentUser", dataEntry[i].name);
                 window.location.href = "home.html";
                 return;
             }else{
-                window.alert("password is incorect")
+                loginpassInvalid.classList.remove("d-none");
                 return; 
             }
         }
+        loginInvalid.classList.remove("d-none");
     }
-    window.alert("Email not found");
 })
 }
 
