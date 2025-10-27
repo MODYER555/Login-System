@@ -1,0 +1,257 @@
+/*-------------------Sign-Up-JS-------------------*/
+
+let uName = document.getElementById("name");
+let uEmail = document.getElementById("email");
+let uPass = document.getElementById("pass");
+let signUpButton = document.getElementById("signUpButton");
+let inputsInvalid = document.getElementById("inputsInvalid");
+let inputsValid = document.getElementById("inputsValid");
+
+let dataEntry=[];
+
+if (window.location.pathname.includes("sign-up.html") || window.location.pathname === "/") {
+    if (localStorage.getItem("userData")) {
+    dataEntry = JSON.parse(localStorage.getItem("userData"));
+}
+
+signUpButton.addEventListener("click", function(){
+    if(signUpvalidate()){
+        let userData={
+            name: uName.value,
+            email: uEmail.value,
+            password: uPass.value
+        }
+
+        if (isUserExist()) {
+            let inputEmailInvalid = document.getElementById("inputEmailInvalid");
+            inputsInvalid.classList.add("d-none");
+            inputsValid.classList.add("d-none");
+            inputEmailInvalid.classList.remove("d-none");
+            return;
+    }
+        
+        dataEntry.push(userData);
+        
+        inputsValid.classList.remove("d-none");
+        inputsInvalid.classList.add("d-none");
+        inputEmailInvalid.classList.add("d-none");
+
+        localStorage.setItem("userData", JSON.stringify(dataEntry));
+    }
+    else{
+        inputsValid.classList.add("d-none");
+        inputsInvalid.classList.remove("d-none");
+    }
+
+}
+)
+
+
+
+
+//Name Validation
+
+function validateName() {
+    let name = uName.value;
+    let regex = /^[A-Za-z]+$/;
+    let inputsInvalid = document.getElementById("inputsInvalid");
+    let alertName = document.getElementById("alertName");
+
+    if (regex.test(name)) {
+        alertName.classList.add("d-none");
+
+        return true;
+    } else {
+        alertName.classList.remove("d-none");
+        return false;
+    }
+}
+
+//Email Validation
+
+function validateEmail(){
+    let email = uEmail.value;
+    let regex = /^[A-Za-z0-9._%+-]+@[A-Za-z0-9.-]+\.[A-Za-z]{2,}$/;
+    let alertEmail = document.getElementById("alertEmail");
+
+    if(regex.test(email)){
+        alertEmail.classList.add("d-none");
+        return true;
+    } else {
+        alertEmail.classList.remove("d-none")
+        return false;
+    }
+}
+
+
+//password Validation
+
+function validatePass(){
+    let pass = uPass.value;
+    let regex = /^[A-Za-z0-9!@#$%^&*]{6,20}$/;
+    let alertPass = document.getElementById("alertPass");
+
+    if(regex.test(pass)){
+        alertPass.classList.add("d-none");
+        return true;
+    } else {
+        alertPass.classList.remove("d-none")
+        return false;
+    }
+}
+
+
+//all inputs validation
+function signUpvalidate(){
+    if(validateName() && validateEmail() && validatePass()){
+        return true;
+    }
+}
+
+//check if email is already exists
+function isUserExist() {
+    for (var i = 0; i < dataEntry.length; i++) {
+        if (uEmail.value === dataEntry[i].email) {
+        return true;
+        }
+    }
+    return false;
+}
+
+
+}
+
+/*-------------------Login-JS-------------------*/
+
+let loginEmail = document.getElementById("loginEmail");
+let loginPass = document.getElementById("loginPass");
+let loginButton = document.getElementById("loginButton");
+
+
+
+
+if (window.location.pathname.includes("index.html")){
+    loginButton.addEventListener("click", function(){
+    dataEntry = JSON.parse(localStorage.getItem("userData"))|| [];
+    for(var i=0; i<dataEntry.length ;i++){
+        if(loginEmail.value == dataEntry[i].email){
+            if(loginPass.value == dataEntry[i].password){
+                localStorage.setItem("currentUser", dataEntry[i].name);
+                window.location.href = "home.html";
+                return;
+            }else{
+                window.alert("password is incorect")
+                return; 
+            }
+        }
+    }
+    window.alert("Email not found");
+})
+}
+
+
+
+if(window.location.pathname.endsWith("home.html")){
+    let userName = localStorage.getItem("currentUser");
+        document.getElementById("loginName").innerHTML = `Welcome ${userName}`;
+}
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+// let pName = document.getElementById("pName");
+// let pPrice = document.getElementById("pPrice");
+// let pCategory = document.getElementById("pCategory");
+// let pDescription = document.getElementById("pDescription");
+// let pFile = document.getElementById("pFile");
+
+// let allProducts=[];
+
+
+// if(localStorage.getItem("products")){
+// //SHOW STORAGE
+// allProducts = JSON.parse(localStorage.setItem("products"))
+// //SHOWING DATA
+// displayData()
+// }
+
+
+// /*=========================== START ===========================*/
+// function addProduct(){
+
+//     //STEP 1
+//     let products={
+//         name: pName.value,
+//         price: pPrice.value,
+//         category: pCategory.value,
+//         description: pDescription.value,
+//         file: pFile.value
+//     }
+
+//     //STEP 2
+//     allProducts.push(products);
+
+//     //STORAGE
+//     localStorage.setItem("products" , JSON.stringify( allProducts ))
+
+//     //STEP 3 SHOWING DATA
+// displayData();
+// }
+
+
+//     /*=========================== SHOWING DATA ===========================*/
+//     function displayData(){
+//         let cartona ="";
+//         for (let i=0 ; i<allProducts.length ; i++){
+//             cartona += 
+//             `
+//             <div class="col-sm-6 col-md-4 col-lg-3">
+//                         <div class="card">
+//                             <img src="imgs/portfolio-6.jpg" alt="product">
+//                             <p>${i}</p>
+//                             <h2>${pName.value}</h2>
+//                             <p>${pPrice.value}</p>
+//                             <p>${pCategory.value}</p>
+//                             <div class="card-footer">
+//                                 <button onclick="deleteProduct(${i});" class="btn btn-outline-danger">Delete</button>
+//                                 <button class="btn btn-outline-warning">Update</button>
+//                             </div>
+//                         </div>
+//                     </div>
+//             `
+//         }
+//         document.getElementById("rowDisplay").innerHTML=cartona;
+//     }
+
+// /*=========================== DELETE DATA ===========================*/
+// function deleteProduct(Index){
+//     allProducts.splice( Index , 1 );
+//     displayData();
+// }

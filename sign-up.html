@@ -1,0 +1,32 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Titillium+Web:ital,wght@0,200;0,300;0,400;0,600;0,700;0,900;1,200;1,300;1,400;1,600;1,700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="css/all.css">
+    <title>Document</title>
+</head>
+<body>
+    <section class="m-auto text-center mt-5 p-5">
+        <h1>Smart Login System</h1>
+        <input onblur="validateName()" class="w-100 my-2 rounded-1" type="text" name="name" id="name" placeholder="Enter your name">
+        <p class="text-start alert alert-danger d-none" id="alertName">Name must be in English letters</p>
+        
+        <input onblur="validateEmail()" class="w-100 my-2 rounded-1" type="email" name="email" id="email" placeholder="Enter your email">
+        <p class="text-start alert alert-danger d-none" id="alertEmail">example: mahmoud@gmail.com</p>
+        
+        <input onblur="validatePass()" class="mb-4 w-100 my-2 rounded-1" type="password" name="pass" id="pass" placeholder="Enter your password">
+        <p class="text-start alert alert-danger d-none" id="alertPass">password must be at least 6 letters</p>
+
+        <p class="text-danger mt-2 d-none" id="inputsInvalid">All inputs is required</p>
+        <p class="text-danger mt-2 d-none" id="inputEmailInvalid">Email already exists</p>
+        <p class="text-success mt-2 d-none" id="inputsValid">Success</p>
+        <a><button id="signUpButton" class="w-100 mt-2 mb-3 rounded-1" type="submit">Sign Up</button></a>
+        <p>Don't have an account? <a href="index.html">Sign In</a></p>
+    </section>
+    <script src="js/index.js"></script>
+</body>
+</html>

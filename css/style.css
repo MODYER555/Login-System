@@ -1,0 +1,89 @@
+:root{
+    --Raleway:"Raleway", sans-serif;
+    --main-color: #24353f;   
+    --text-color: #17a2b8;
+}
+
+body{
+    background-color: var(--main-color);
+    font-family: "Titillium Web", sans-serif;
+}
+
+::-webkit-input-placeholder { /* WebKit, Blink, Edge */
+    color:   rgb(170, 170, 170);
+}
+:-moz-placeholder { /* Mozilla Firefox 4 to 18 */
+    color:   rgb(170, 170, 170);
+    opacity:  1;
+}
+::-moz-placeholder { /* Mozilla Firefox 19+ */
+    color:   rgb(170, 170, 170);
+    opacity:  1;
+}
+:-ms-input-placeholder { /* Internet Explorer 10-11 */
+    color:   rgb(170, 170, 170);
+}
+::-ms-input-placeholder { /* Microsoft Edge */
+    color:   rgb(170, 170, 170);
+}
+::placeholder { /* Most modern browsers support this now. */
+    color:   rgb(170, 170, 170);
+}
+
+a{
+    color: white;
+    text-decoration: none;
+}
+
+a:hover{
+    text-decoration: underline;
+}
+
+section{
+    background-color: var(--main-color);
+    color: var(--text-color);
+    width: 55%;
+    box-shadow: -5px 2px 54px -9px rgba(0, 0, 0, 1);
+}
+
+h1{
+    font-weight: 500;
+    font-size: 40px;
+}
+
+input{
+    padding: 6px 10px;
+    background-color: var(--main-color);
+    border: white 1px solid;
+    color: white;
+    outline: 0px;
+}
+
+input:focus{
+    border: rgb(111, 156, 224) 1px solid;
+}
+
+button{
+    padding: 6px 10px;
+    background: var(--main-color);
+    color: var(--text-color);
+    border: var(--text-color) 1px solid;
+    transition: all ease-in-out 0.2s;
+}
+
+button:hover{
+    background-color: var(--text-color);
+    color: white;
+}
+
+p{
+    font-weight:400 ;
+    font-size: 17px;
+    color: white;
+}
+
+/*-------------------home-css-------------------*/
+
+nav{
+    box-shadow: 0 0 50px 1px rgba(0, 0, 0, 0.712);
+}
